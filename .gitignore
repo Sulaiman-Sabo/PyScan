@@ -1,0 +1,42 @@
+# Environments
+venv/
+env/
+.env
+.venv/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyScan Dataset and Logs
+CVEFixes_Dataset/
+combined_dataset/
+VUDENC_Dataset/
+logs/
+.system_generated/
+scratch/
+test_large_upload.py
+large_test.py
+
+# Models & Weights (if large or not to be committed)
+*.pt
+*.pth
+*.h5
+models/training_report.json
+# Note: we might want to keep tokenizer_config.json if it's required for the web app
+
+# Flask and SQLite
+instance/
+*.sqlite
+*.sqlite3
+*.db
+pyscan.db
+
+# IDEs and OS files
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db

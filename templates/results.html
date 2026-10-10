@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<!-- Summary Banner -->
+<section class="results-banner bg-{{ summary_color }}">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="banner-title text-break">
+                    {% if scan_results.vulnerable_count > 0 %}
+                        <i class="fas fa-triangle-exclamation me-2"></i>
+                        {{ scan_results.vulnerable_count }} Vulnerability
+                        {% if scan_results.vulnerable_count > 1 %}ies{% else %}y{% endif %}
+                        Found in {{ scan_results.filename }}
+                    {% else %}
+                        <i class="fas fa-shield-halved me-2"></i>
+                        No Vulnerabilities Detected in {{ scan_results.filename }}
+                    {% endif %}
+                </h1>
+                <div class="banner-meta">
+                    <span class="banner-meta-item"><i class="fas fa-folder-open me-1"></i>{{ scan_results.filename }}</span>
+                    <span class="banner-meta-item"><i class="fas fa-file-code me-1"></i>{{ scan_results.files_scanned or 1 }} file{% if (scan_results.files_scanned or 1) != 1 %}s{% endif %}</span>
+                    <span class="banner-meta-item"><i class="fas fa-clock me-1"></i>{{ scan_results.scan_time }}</span>
+                    <span class="banner-meta-item"><i class="fas fa-cubes me-1"></i>{{ scan_results.total_functions }} function{% if scan_results.total_functions != 1 %}s{% endif %}</span>
+                    <span class="banner-meta-item"><i class="fas fa-bug me-1"></i>{{ scan_results.vulnerable_count }} vulnerable</span>
+                    <span class="banner-meta-item"><i class="fas fa-check-circle me-1"></i>{{ scan_results.safe_count }} safe</span>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="banner-score">
+                    <div class="score-label">Security Score</div>
+                    <div class="score-value">
+                        {% set score = ((scan_results.safe_count / scan_results.total_functions) * 100) | int if scan_results.total_functions > 0 else 100 %}
+                        {{ score }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Saved Notice -->
+<div class="container mt-3">
+    <div class="alert alert-info alert-sm d-flex align-items-center justify-content-between">
+        <div>
+            <i class="fas fa-shield-cat me-2 text-accent"></i>
+            <strong>Privacy Active:</strong> Zero source code stored. Scan metadata &amp; CWE analysis saved to your <a href="{{ url_for('dashboard.index') }}" class="alert-link">dashboard</a>.
+        </div>
+        <span class="badge bg-success"><i class="fas fa-lock me-1"></i>Code Safe</span>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<section class="results-actions">
+    <div class="container">
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="{{ url_for('download_report') }}" class="btn btn-outline-report">
+                <i class="fas fa-download me-2"></i>Download Report
+            </a>
+            <a href="{{ url_for('scan_page') }}" class="btn btn-scan-another">
+                <i class="fas fa-rotate-right me-2"></i>Scan Another Target
+            </a>
+            {% if from_dashboard %}
+            <a href="{{ url_for('dashboard.index') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Vulnerability Categories Distribution Summary -->
+{% if scan_results.cwe_summary %}
+<section class="results-cwe-summary py-4">
+    <div class="container">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            <div class="card-header bg-dark text-white d-flex align-items-center justify-content-between py-3 px-4">
+                <h5 class="mb-0 text-white font-weight-bold">
+                    <i class="fas fa-chart-pie text-accent me-2"></i>
+                    Vulnerability Category Analysis Breakdown
+                </h5>
+                <span class="badge bg-danger fs-6">{{ scan_results.vulnerable_count }} Issue{% if scan_results.vulnerable_count != 1 %}s{% endif %} Found</span>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    {% for cwe, count in scan_results.cwe_summary.items() %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="cwe-summary-card p-3 rounded-3 border d-flex align-items-center justify-content-between bg-light">
+                            <div>
+                                <span class="badge bg-danger text-white mb-1 font-mono">{{ cwe.split(':')[0] }}</span>
+                                <h6 class="mb-0 text-dark font-weight-bold text-break">{{ cwe.split(':')[1] if ':' in cwe else cwe }}</h6>
+                            </div>
+                            <span class="fs-4 font-weight-bold text-danger ms-2">{{ count }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Vulnerable Functions -->
+{% set vulnerable_funcs = scan_results.functions | selectattr('is_vulnerable') | list %}
+{% if vulnerable_funcs %}
+<section class="results-vulnerable">
+    <div class="container">
+        <h2 class="section-heading">
+            <i class="fas fa-triangle-exclamation me-2 text-danger"></i>
+            Vulnerable Functions
+            <span class="badge badge-count bg-danger">{{ vulnerable_funcs | length }}</span>
+        </h2>
+
+        {% for func in vulnerable_funcs %}
+        <div class="vuln-card" id="vuln-card-{{ loop.index }}">
+            <div class="vuln-card-header">
+                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="vuln-function-info text-break">
+                        <span class="vuln-function-name"><i class="fas fa-code-branch me-2"></i>{{ func.function_name }}()</span>
+                        {% if func.filename %}
+                            <span class="badge bg-secondary text-light ms-2 font-mono"><i class="fas fa-file-code me-1"></i>{{ func.filename }}</span>
+                        {% endif %}
+                        <span class="vuln-line-badge bg-danger text-white"><i class="fas fa-crosshairs me-1"></i>Vulnerability Location: Line {{ func.vulnerable_line_no or func.start_line }}</span>
+                    </div>
+                    <div class="vuln-badges mt-2 mt-sm-0">
+                        <span class="risk-badge risk-{{ func.risk_level | lower }}">{{ func.risk_level }} RISK</span>
+                    </div>
+                </div>
+            </div>
+            <div class="vuln-card-body">
+                {% if func.vulnerable_line_text %}
+                <div class="precise-line-location mt-2 p-3 bg-dark rounded-3 border border-danger text-white">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="small text-danger font-weight-bold font-mono">
+                            <i class="fas fa-bug me-1"></i>VULNERABLE LINE (Line {{ func.vulnerable_line_no or func.start_line }})
+                        </span>
+                        <span class="badge bg-danger text-white">Target Flaw Line</span>
+                    </div>
+                    <code class="text-danger-light font-mono d-block text-break">{{ func.vulnerable_line_text }}</code>
+                </div>
+                {% endif %}
+
+                <div class="confidence-section mt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="confidence-label">Detection Confidence</span>
+                        <span class="confidence-value">{{ func.confidence_percent }}%</span>
+                    </div>
+                    <div class="progress confidence-bar">
+                        <div class="progress-bar bg-danger" role="progressbar"
+                             style="width: {{ func.confidence_percent }}%"
+                             aria-valuenow="{{ func.confidence_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="cwe-section mt-3">
+                    <span class="cwe-label">CWE Category:</span>
+                    <span class="cwe-badge text-break">{{ func.cwe_category }}</span>
+                </div>
+                <div class="tokens-section mt-3">
+                    <span class="tokens-label"><i class="fas fa-fingerprint me-1"></i>Suspicious Tokens:</span>
+                    <div class="tokens-list">
+                        {% for token in func.suspicious_tokens %}
+                            <span class="token-badge text-break" onclick="copyToClipboard('{{ token }}')" title="Click to copy">{{ token }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="details-section mt-3">
+                    <button class="btn btn-details" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#details-{{ loop.index }}" aria-expanded="false"
+                            aria-controls="details-{{ loop.index }}">
+                        <i class="fas fa-shield-halved me-1"></i>View Security Analysis & Secure Fix
+                        <i class="fas fa-chevron-down ms-1 details-chevron"></i>
+                    </button>
+                    <div class="collapse" id="details-{{ loop.index }}">
+                        <div class="details-content mt-2 p-3 bg-light rounded-3 border">
+                            {% if func.remediation and func.remediation.title %}
+                                <h6 class="text-dark font-weight-bold mb-2">
+                                    <i class="fas fa-wrench text-accent me-2"></i>{{ func.remediation.title }}
+                                </h6>
+                                <p class="small text-secondary mb-3">{{ func.remediation.description }}</p>
+
+                                <div class="row g-2 mb-2">
+                                    <div class="col-md-6">
+                                        <div class="p-2 bg-danger-subtle rounded border border-danger">
+                                            <span class="small font-weight-bold text-danger d-block mb-1">❌ Vulnerable Code Pattern</span>
+                                            <code class="small text-danger font-mono text-break d-block">{{ func.remediation.vulnerable_example }}</code>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-2 bg-success-subtle rounded border border-success">
+                                            <span class="small font-weight-bold text-success d-block mb-1">✅ Recommended Secure Fix</span>
+                                            <code class="small text-success font-mono text-break d-block">{{ func.remediation.secure_example }}</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="details-recommendation mt-2">
+                                <strong><i class="fas fa-lightbulb me-1 text-warning"></i>Remediation Advice:</strong>
+                                Refactor the identified function lines to use parameterized calls or validated APIs to eliminate execution risks.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Safe Functions -->
+{% set safe_funcs = scan_results.functions | rejectattr('is_vulnerable') | list %}
+{% if safe_funcs %}
+<section class="results-safe">
+    <div class="container">
+        <div class="accordion" id="safeAccordion">
+            <div class="accordion-item safe-accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button safe-accordion-button {% if vulnerable_funcs %}collapsed{% endif %}" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#safeCollapse" aria-expanded="{% if vulnerable_funcs %}false{% else %}true{% endif %}"
+                            aria-controls="safeCollapse">
+                        <i class="fas fa-check-circle me-2 text-success"></i>
+                        Safe Functions
+                        <span class="badge bg-success ms-2">{{ safe_funcs | length }}</span>
+                    </button>
+                </h2>
+                <div id="safeCollapse" class="accordion-collapse collapse {% if not vulnerable_funcs %}show{% endif %}" data-bs-parent="#safeAccordion">
+                    <div class="accordion-body p-0">
+                        {% for func in safe_funcs %}
+                        <div class="safe-function-row">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="safe-function-info text-break">
+                                    <span class="safe-function-name"><i class="fas fa-code-branch me-2"></i>{{ func.function_name }}()</span>
+                                    {% if func.filename %}
+                                        <span class="badge bg-secondary text-light ms-2 font-mono">{{ func.filename }}</span>
+                                    {% endif %}
+                                    <span class="safe-line-badge">Line {{ func.start_line }}</span>
+                                </div>
+                                <div class="safe-confidence mt-1 mt-sm-0">
+                                    <span class="safe-confidence-label">Confidence</span>
+                                    <span class="safe-confidence-value">{{ func.confidence_percent }}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CWE Reference Table -->
+<section class="results-cwe-reference">
+    <div class="container">
+        <div class="accordion" id="cweAccordion">
+            <div class="accordion-item cwe-accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button cwe-accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#cweCollapse" aria-expanded="false"
+                            aria-controls="cweCollapse">
+                        <i class="fas fa-book me-2 text-accent"></i>
+                        CWE Reference -- All 11 Detected Categories
+                    </button>
+                </h2>
+                <div id="cweCollapse" class="accordion-collapse collapse" data-bs-parent="#cweAccordion">
+                    <div class="accordion-body p-0">
+                        <div class="table-responsive">
+                            <table class="table cwe-table mb-0">
+                                <thead>
+                                    <tr><th>CWE ID</th><th>Name</th><th>Description</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="cwe-id-badge">CWE-78</span></td><td>OS Command Injection</td><td>Untrusted input passed to system shell commands</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-79</span></td><td>Cross-Site Scripting (XSS)</td><td>Untrusted data included in web pages without validation</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-89</span></td><td>SQL Injection</td><td>Untrusted input concatenated into SQL queries</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-94</span></td><td>Code Injection</td><td>Untrusted code evaluated or executed dynamically</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-200</span></td><td>Information Exposure</td><td>Sensitive information disclosed to unauthorized actors</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-287</span></td><td>Improper Authentication</td><td>Authentication mechanisms bypassed or missing</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-311</span></td><td>Missing Encryption</td><td>Sensitive data transmitted or stored without encryption</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-327</span></td><td>Insecure Cryptographic Implementation</td><td>Use of broken or weak cryptographic algorithms</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-502</span></td><td>Insecure Deserialization</td><td>Untrusted data deserialized without integrity checks</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-798</span></td><td>Hard-coded Credentials</td><td>Authentication secrets embedded in source code</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-918</span></td><td>Server-Side Request Forgery (SSRF)</td><td>Server coerced into making unauthorized requests</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text);
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstVuln = document.querySelector('.vuln-card');
+        if (firstVuln) {
+            firstVuln.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const firstBtn = firstVuln.querySelector('.btn-details');
+            if (firstBtn) firstBtn.click();
+        }
+    });
+</script>
+{% endblock %}

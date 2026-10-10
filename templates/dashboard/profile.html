@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<section class="profile-page">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Profile Info Card -->
+            <div class="col-lg-4">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        {{ user.username[0]|upper }}
+                    </div>
+                    <h4 class="profile-name">{{ user.username }}</h4>
+                    <p class="profile-email">{{ user.email }}</p>
+                    <span class="profile-role-badge">{{ user.role|title }}</span>
+                    <div class="profile-meta">
+                        <div class="profile-meta-item">
+                            <i class="fas fa-calendar me-2 text-accent"></i>
+                            Member since: {{ user.created_at[:10] if user.created_at else 'N/A' }}
+                        </div>
+                        <div class="profile-meta-item">
+                            <i class="fas fa-clock me-2 text-accent"></i>
+                            Last login: {{ user.last_login[:16] if user.last_login else 'Never' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile & Security -->
+            <div class="col-lg-8">
+                <!-- Edit Profile -->
+                <div class="profile-section-card">
+                    <h5 class="profile-section-title"><i class="fas fa-user-pen me-2"></i>Edit Profile</h5>
+                    <form method="POST" action="{{ url_for('dashboard.profile') }}" class="auth-form">
+                        {{ profile_form.hidden_tag() }}
+                        <div class="form-group mb-3">
+                            <label class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {{ profile_form.username(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control" value="{{ user.email }}" disabled>
+                            </div>
+                            <small class="text-muted">Email cannot be changed.</small>
+                        </div>
+                        <button type="submit" class="btn btn-auth-submit">
+                            <i class="fas fa-save me-2"></i>Update Profile
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Change Password -->
+                <div class="profile-section-card">
+                    <h5 class="profile-section-title"><i class="fas fa-key me-2"></i>Change Password</h5>
+                    <form method="POST" action="{{ url_for('dashboard.change_password') }}" class="auth-form">
+                        {{ password_form.hidden_tag() }}
+                        <div class="form-group mb-3">
+                            <label class="form-label">Current Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                {{ password_form.current_password(class="form-control", placeholder="Enter current password") }}
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">New Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                {{ password_form.new_password(class="form-control", placeholder="Enter new password") }}
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                {{ password_form.confirm_new_password(class="form-control", placeholder="Repeat new password") }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-auth-submit">
+                            <i class="fas fa-key me-2"></i>Change Password
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Account Activity -->
+                <div class="profile-section-card">
+                    <h5 class="profile-section-title"><i class="fas fa-list-ul me-2"></i>Account Activity</h5>
+                    {% if audit_log %}
+                    <div class="table-responsive">
+                        <table class="table table-sm activity-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Time</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in audit_log %}
+                                <tr>
+                                    <td>
+                                        <span class="activity-badge activity-{{ entry.action|lower|replace('_', '-') }}">
+                                            {{ entry.action }}
+                                        </span>
+                                    </td>
+                                    <td>{{ entry.timestamp[:16] }}</td>
+                                    <td class="text-muted small">{{ entry.details or '--' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted mb-0">No recent activity recorded.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="profile-section-card danger-zone">
+                    <h5 class="profile-section-title text-danger"><i class="fas fa-triangle-exclamation me-2"></i>Danger Zone</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="danger-stat">
+                                <div class="danger-stat-value">{{ stats.total_scans }}</div>
+                                <div class="danger-stat-label">Total Scans</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="danger-stat">
+                                <div class="danger-stat-value">{{ stats.total_vulns }}</div>
+                                <div class="danger-stat-label">Vulns Found</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="danger-stat">
+                                <div class="danger-stat-value">{{ stats.last_scan_date[:10] if stats.last_scan_date else 'Never' }}</div>
+                                <div class="danger-stat-label">Last Scan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+  "0": "SAFE",
+  "1": "CWE-78: OS Command Injection",
+  "2": "CWE-79: Cross-Site Scripting (XSS)",
+  "3": "CWE-89: SQL Injection",
+  "4": "CWE-94: Code Injection (Remote Code Execution)",
+  "5": "CWE-200: Information Exposure (Path Disclosure)",
+  "6": "CWE-287: Improper Authentication",
+  "7": "CWE-311: Missing Encryption",
+  "8": "CWE-327: Insecure Cryptographic Implementation",
+  "9": "CWE-352: Cross-Site Request Forgery (CSRF/XSRF)",
+  "10": "CWE-502: Insecure Deserialization",
+  "11": "CWE-601: Open Redirect",
+  "12": "CWE-798: Hard-coded Credentials",
+  "13": "CWE-918: Server-Side Request Forgery (SSRF)"
+}

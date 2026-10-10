@@ -1,0 +1,14 @@
+#!/bin/sh
+# PyScan DevSecOps Git Pre-Commit Hook
+# Automatically blocks commits containing high-risk security vulnerabilities
+
+echo "[PyScan] Running local security audit on staged Python files..."
+python pyscan_cli.py --path .
+
+if [ $? -ne 0 ]; then
+    echo "[!] PyScan Security Audit Failed. Please fix the detected vulnerabilities before committing."
+    exit 1
+fi
+
+echo "[+] PyScan Security Audit Passed cleanly!"
+exit 0

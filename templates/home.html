@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}Home -- PyScan AI Vulnerability Detection Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Institutional Badges & Logos -->
+<section class="pyscan-hero py-5 text-white bg-dark position-relative overflow-hidden">
+    <div class="container py-4 position-relative z-index-2">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <!-- University Logos & Badges -->
+                <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+                    <div class="d-flex align-items-center bg-dark-subtle border border-accent rounded-pill px-3 py-2 shadow-sm">
+                        <div class="rounded-circle bg-accent text-dark font-weight-bold d-flex align-items-center justify-content-center me-2" style="width:36px; height:36px; font-size:14px;">
+                            FUTB
+                        </div>
+                        <span class="small font-weight-bold text-accent">Federal University of Technology, Babura</span>
+                    </div>
+                    <div class="badge bg-secondary-dark text-light border border-secondary rounded-pill px-3 py-2">
+                        <i class="fas fa-graduation-cap me-1 text-warning"></i>BSc Cybersecurity Final Year Project
+                    </div>
+                </div>
+
+                <h1 class="display-4 font-weight-bold mb-3">
+                    AI-Powered Security Scanning for <span class="text-accent">Python Codebases</span>
+                </h1>
+                <p class="lead text-light opacity-90 mb-4">
+                    PyScan leverages <strong>Bidirectional Long Short-Term Memory (BiLSTM)</strong> deep learning networks 
+                    and <strong>Self-Attention Mechanisms</strong> to detect vulnerabilities across 11 CWE categories at the function and line level.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    {% if is_logged_in %}
+                        <a href="{{ url_for('scan_page') }}" class="btn btn-accent btn-lg px-4 py-3 font-weight-bold shadow">
+                            <i class="fas fa-shield-halved me-2"></i>Start Security Scan
+                        </a>
+                        <a href="{{ url_for('dashboard.index') }}" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-chart-line me-2"></i>View Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-accent btn-lg px-4 py-3 font-weight-bold shadow">
+                            <i class="fas fa-user-plus me-2"></i>Get Started Free
+                        </a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-right-to-bracket me-2"></i>Sign In
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="p-4 rounded-4 bg-secondary-dark border border-secondary shadow-lg">
+                    <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-secondary pb-2">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-shield-cat text-accent me-2 fs-4"></i>
+                            <span class="small text-accent font-mono">PyScan Deep Learning Audit</span>
+                        </div>
+                        <span class="badge bg-success">100% Zero-Storage Privacy</span>
+                    </div>
+                    <pre class="font-mono text-light mb-0 small" style="font-size: 0.82rem;"><code><span class="text-secondary"># 1. AST Tokenization & Feature Masking</span>
+<span class="text-accent">def</span> <span class="text-warning">analyze_target</span>(source_code):
+    tokens = preprocessor.tokenize(source_code)
+    
+<span class="text-secondary"># 2. BiLSTM-Attention Neural Inference</span>
+    logits, attn_weights = model.predict(tokens)
+    
+<span class="text-secondary"># 3. Precise Line Pinpointing & Secure Fix</span>
+    <span class="text-danger">flaw_line</span> = pinpoint_line(attn_weights)
+    <span class="text-success">return</span> generate_remediation(flaw_line)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detailed System Description & Methodology -->
+<section class="py-5 bg-light">
+    <div class="container py-4">
+        <!-- Section Title -->
+        <div class="text-center max-w-800 mx-auto mb-5">
+            <h2 class="font-weight-bold text-dark">PyScan at Glance</h2>
+            <p class="text-secondary lead">An in-depth guide explaining the background, artificial intelligence architecture, and security capabilities of PyScan.</p>
+        </div>
+
+        <!-- 1. Problem Background & Research Motivation -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+            <div class="row align-items-center g-4">
+                <div class="col-md-3 text-center">
+                    <div class="p-3 bg-danger-subtle rounded-circle d-inline-block text-danger mb-3 mb-md-0" style="width:80px; height:80px; font-size:36px; line-height:50px;">
+                        <i class="fas fa-bug-slash"></i>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="font-weight-bold text-dark mb-2">1. Research Motivation & Problem Statement</h4>
+                    <p class="text-secondary mb-2">
+                        Traditional Static Application Security Testing (SAST) tools, such as Bandit or Flake8, rely on rigid regular expressions and hardcoded AST rules. When developers use variable aliasing, string formatting, or indirect function calls (e.g. <code>cmd = input(); fn = os.system; fn(cmd)</code>), traditional SAST suffers high false negative rates (**up to 71.1% false negative rate**).
+                    </p>
+                    <p class="text-secondary mb-0">
+                        <strong>PyScan solves this problem</strong> by employing a deep learning neural network trained on over 15,197 real-world Python functions from <strong>CVEFixes</strong> and <strong>VUDENC</strong>. PyScan learns deep semantic patterns, achieving an **85.6% recall rate** (+56.7% recall improvement over traditional SAST).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Detailed 5-Stage AST Preprocessing Pipeline -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+            <h4 class="font-weight-bold text-dark mb-3"><i class="fas fa-diagram-project text-accent me-2"></i>2. The 5-Stage AST Preprocessing Pipeline</h4>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <strong class="text-dark d-block mb-1"><i class="fas fa-broom me-2 text-accent"></i>Stage 1: Code Cleaning</strong>
+                        <p class="small text-secondary mb-0">Strips comments, enforces 4-space indentation, standardizes quotes, and handles non-UTF8 encodings cleanly.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <strong class="text-dark d-block mb-1"><i class="fas fa-code-branch me-2 text-accent"></i>Stage 2: Function & Script Extraction</strong>
+                        <p class="small text-secondary mb-0">Extracts top-level <code>def</code> functions using Python AST. Top-level scripts without functions are processed as <code>&lt;module_main&gt;</code>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <strong class="text-dark d-block mb-1"><i class="fas fa-user-secret me-2 text-accent"></i>Stage 3: Feature Anonymization</strong>
+                        <p class="small text-secondary mb-0">Masks user variable names (<code>var1</code>, <code>var2</code>) and string literals (<code>STRING_LIT</code>) while preserving built-in security sinks.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <strong class="text-dark d-block mb-1"><i class="fas fa-list-ol me-2 text-accent"></i>Stage 4: Tokenization & Tensor Padding</strong>
+                        <p class="small text-secondary mb-0">Converts code tokens into vocabulary index arrays from a master vocabulary of 15,095 tokens, padded to <code>MAX_SEQ_LEN = 200</code>.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <strong class="text-dark d-block mb-1"><i class="fas fa-brain me-2 text-accent"></i>Stage 5: BiLSTM-Attention Inference</strong>
+                        <p class="small text-secondary mb-0">Feeds vectorized matrices into a 2-layer BiLSTM model (128 embedding dim, 64 hidden dim) with a self-attention classification head.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Complete 11 CWE Vulnerability Coverage Matrix -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+            <h4 class="font-weight-bold text-dark mb-3"><i class="fas fa-shield-virus text-accent me-2"></i>3. Covered 11 CWE Vulnerability Categories</h4>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-danger me-2">CWE-78</span><strong>OS Command Injection</strong>
+                        <p class="small text-secondary mb-0 mt-1">Passing user input directly to <code>os.system</code> or <code>exec</code>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-danger me-2">CWE-89</span><strong>SQL Injection</strong>
+                        <p class="small text-secondary mb-0 mt-1">Concatenating unsanitized strings into database queries.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-danger me-2">CWE-502</span><strong>Insecure Deserialization</strong>
+                        <p class="small text-secondary mb-0 mt-1">Deserializing untrusted data with <code>pickle.loads</code> or <code>yaml.load</code>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-warning text-dark me-2">CWE-798</span><strong>Hard-coded Credentials</strong>
+                        <p class="small text-secondary mb-0 mt-1">Embedding API secret keys or passwords in source code.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-warning text-dark me-2">CWE-327</span><strong>Insecure Cryptography</strong>
+                        <p class="small text-secondary mb-0 mt-1">Using broken hash algorithms (MD5, SHA1, DES, RC4).</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-warning text-dark me-2">CWE-79</span><strong>Cross-Site Scripting (XSS)</strong>
+                        <p class="small text-secondary mb-0 mt-1">Rendering unescaped HTML strings in web templates.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-info text-dark me-2">CWE-22</span><strong>Path Traversal</strong>
+                        <p class="small text-secondary mb-0 mt-1">Reading files outside authorized directories via unvalidated paths.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-info text-dark me-2">CWE-918</span><strong>Server-Side Request Forgery</strong>
+                        <p class="small text-secondary mb-0 mt-1">Fetching internal endpoints based on untrusted URL parameters.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-2 border rounded-3 bg-white">
+                        <span class="badge bg-info text-dark me-2">CWE-330</span><strong>Weak Randomness</strong>
+                        <p class="small text-secondary mb-0 mt-1">Using non-cryptographic PRNGs for tokens or secret nonces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Academic Institution & Project Attribution -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-dark text-white">
+            <div class="row align-items-center g-4">
+                <div class="col-md-3 text-center border-end border-secondary">
+                    <div class="rounded-circle bg-accent text-dark font-weight-bold mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:72px; height:72px; font-size:24px;">
+                        FUTB
+                    </div>
+                    <strong class="d-block text-accent">FUTB CYB</strong>
+                    <span class="small text-secondary">Academic Security Unit</span>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="font-weight-bold text-accent mb-2">Institutional Attribution & Academic Ownership</h4>
+                    <p class="small text-light opacity-90 mb-2">
+                        PyScan is developed as an undergraduate project in the <strong>Department of Cybersecurity</strong>, 
+                        <strong>Faculty of Computing and Information Technology</strong> at the <strong>Federal University of Technology, Babura (FUTB)</strong>, Jigawa State, Nigeria.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        <span class="badge bg-secondary-dark text-accent border border-accent">BSc Cybersecurity Project</span>
+                        <span class="badge bg-secondary-dark text-light border border-secondary">Federal University of Technology, Babura</span>
+                        <span class="badge bg-secondary-dark text-light border border-secondary">Faculty of Computing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

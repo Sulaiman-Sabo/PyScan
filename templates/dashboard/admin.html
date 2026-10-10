@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<section class="admin-page">
+    <div class="container">
+        <h2 class="admin-title"><i class="fas fa-gear me-2 text-accent"></i>Admin Panel</h2>
+
+        <!-- System Statistics -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card stat-blue">
+                    <div class="stat-card-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-card-value">{{ system_stats.total_users }}</div>
+                    <div class="stat-card-label">Total Users</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card stat-amber">
+                    <div class="stat-card-icon"><i class="fas fa-cubes"></i></div>
+                    <div class="stat-card-value">{{ system_stats.total_scans }}</div>
+                    <div class="stat-card-label">Total Scans</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card stat-red">
+                    <div class="stat-card-icon"><i class="fas fa-bug"></i></div>
+                    <div class="stat-card-value">{{ system_stats.total_vulnerabilities }}</div>
+                    <div class="stat-card-label">Total Vulnerabilities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="admin-section mb-4">
+            <h4 class="section-heading"><i class="fas fa-users me-2"></i>Registered Users</h4>
+            <div class="table-responsive">
+                <table class="table dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Scans</th>
+                            <th>Last Login</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td><span class="role-badge role-{{ user.role }}">{{ user.role|title }}</span></td>
+                            <td>{{ user.scan_count }}</td>
+                            <td>{{ user.last_login[:16] if user.last_login else 'Never' }}</td>
+                            <td>
+                                {% if user.is_active == 1 %}
+                                    <span class="status-badge status-active">Active</span>
+                                {% else %}
+                                    <span class="status-badge status-inactive">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form action="{{ url_for('dashboard.toggle_user', user_id=user.id) }}" method="POST" class="d-inline">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-sm {% if user.is_active == 1 %}btn-outline-danger{% else %}btn-outline-success{% endif %}"
+                                            {% if user.id == session.user_id %}disabled title="Cannot modify own account"{% endif %}>
+                                        {% if user.is_active == 1 %}<i class="fas fa-ban"></i>{% else %}<i class="fas fa-check"></i>{% endif %}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Audit Log -->
+        <div class="admin-section">
+            <h4 class="section-heading"><i class="fas fa-list-ul me-2"></i>Recent Audit Log</h4>
+            <div class="table-responsive">
+                <table class="table dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>IP Address</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in audit_log %}
+                        <tr>
+                            <td>{{ entry.timestamp[:16] }}</td>
+                            <td>{{ entry.username or 'Anonymous' }}</td>
+                            <td>
+                                <span class="activity-badge activity-{{ entry.action|lower|replace('_', '-') }}">
+                                    {{ entry.action }}
+                                </span>
+                            </td>
+                            <td><code class="small">{{ entry.ip_address or 'N/A' }}</code></td>
+                            <td class="text-muted small">{{ entry.details or '--' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

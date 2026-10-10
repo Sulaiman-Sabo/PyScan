@@ -1,0 +1,25 @@
+# PyScan -- Python Vulnerability Detection Tool (Full System)
+# BSc Cybersecurity Final Year Project
+# Federal University of Technology, Babura (FUTB)
+
+# Web Framework & Security
+Flask==3.0.3
+Flask-WTF==1.2.1
+flask-bcrypt==1.0.1
+
+# Deep Learning
+torch==2.5.0
+
+# Data Processing
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.4.2
+
+# Word Embeddings (for model training pipeline)
+gensim==4.3.2
+
+# Environment Configuration
+python-dotenv==1.0.1
+
+# Werkzeug (Flask dependency, pinned for compatibility)
+werkzeug==3.0.3

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard-page">
+    <div class="container">
+        <!-- Welcome Message -->
+        <div class="dashboard-welcome mb-4">
+            <h2>Welcome back, {{ username }}!</h2>
+            {% if last_login %}
+                <p class="text-muted mb-0">Last login: {{ last_login }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Statistics Row -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card stat-blue">
+                    <div class="stat-card-icon"><i class="fas fa-cubes"></i></div>
+                    <div class="stat-card-value">{{ total_scans }}</div>
+                    <div class="stat-card-label">Total Scans</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card stat-red">
+                    <div class="stat-card-icon"><i class="fas fa-bug"></i></div>
+                    <div class="stat-card-value">{{ total_vulns_found }}</div>
+                    <div class="stat-card-label">Vulnerabilities Found</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card stat-green">
+                    <div class="stat-card-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-card-value">{{ total_scans * 3 if total_scans > 0 else 0 }}</div>
+                    <div class="stat-card-label">Safe Functions</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card stat-amber">
+                    <div class="stat-card-icon"><i class="fas fa-calendar"></i></div>
+                    <div class="stat-card-value">
+                        {% if recent_scans %}
+                            {{ recent_scans[0].scan_time[:10] }}
+                        {% else %}
+                            --
+                        {% endif %}
+                    </div>
+                    <div class="stat-card-label">Last Scan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Action -->
+        <div class="text-center mb-4">
+            <a href="{{ url_for('scan_page') }}" class="btn btn-scan-new">
+                <i class="fas fa-plus me-2"></i>Run New Scan
+            </a>
+        </div>
+
+        <!-- Vulnerability Trend Chart -->
+        {% if scan_trends %}
+        <div class="dashboard-section mb-4">
+            <h4 class="section-heading"><i class="fas fa-chart-bar me-2"></i>Recent Scan Trends</h4>
+            <div class="trend-chart">
+                {% for trend in scan_trends %}
+                <div class="trend-item">
+                    <div class="trend-label">{{ trend.filename }}</div>
+                    <div class="trend-bar-wrapper">
+                        <div class="trend-bar" style="width: {{ (trend.vulnerable_count / trend.total_functions * 100) if trend.total_functions > 0 else 0 }}%">
+                            <span class="trend-bar-value">{{ trend.vulnerable_count }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Recent Scans Table -->
+        <div class="dashboard-section">
+            <h4 class="section-heading"><i class="fas fa-history me-2"></i>Recent Scans</h4>
+
+            {% if recent_scans %}
+            <div class="table-responsive">
+                <table class="table dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Date & Time</th>
+                            <th>Functions</th>
+                            <th>Vulnerable</th>
+                            <th>Risk</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for scan in recent_scans %}
+                        <tr>
+                            <td class="filename-cell">{{ scan.filename }}</td>
+                            <td>{{ scan.scan_time }}</td>
+                            <td>{{ scan.total_functions }}</td>
+                            <td>{{ scan.vulnerable_count }}</td>
+                            <td>
+                                {% if scan.high_risk_count > 0 %}
+                                    <span class="risk-badge-table risk-high">HIGH</span>
+                                {% elif scan.vulnerable_count > 0 %}
+                                    <span class="risk-badge-table risk-medium">MEDIUM</span>
+                                {% else %}
+                                    <span class="risk-badge-table risk-safe">CLEAN</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('dashboard.view_scan', scan_id=scan.id) }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ scan.id }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
+                <h5>No scans yet</h5>
+                <p class="text-muted">Upload your first Python file to get started.</p>
+                <a href="{{ url_for('scan_page') }}" class="btn btn-scan-new mt-2">
+                    <i class="fas fa-upload me-2"></i>Upload File
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Delete Confirmation Modals -->
+{% for scan in recent_scans %}
+<div class="modal fade" id="deleteModal{{ scan.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-triangle-exclamation text-danger me-2"></i>Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the scan for <strong>{{ scan.filename }}</strong>?</p>
+                <p class="text-muted mb-0">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{ url_for('dashboard.delete_scan', scan_id=scan.id) }}" method="POST" class="d-inline">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

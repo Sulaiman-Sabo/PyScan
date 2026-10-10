@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div class="error-code">{{ code }}</div>
+                <div class="error-icon">
+                    <i class="fas fa-{% if code == 404 %}magnifying-glass{% elif code == 403 %}lock{% elif code == 429 %}gauge-high{% else %}triangle-exclamation{% endif %}"></i>
+                </div>
+                <h2 class="error-title">{{ title }}</h2>
+                <p class="error-message">{{ message }}</p>
+                <a href="{{ url_for('index') }}" class="btn btn-auth-submit mt-3">
+                    <i class="fas fa-home me-2"></i>Go Home
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

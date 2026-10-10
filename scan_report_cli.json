@@ -1,0 +1,1193 @@
+{
+  "target": "C:\\Users\\user\\Downloads\\pyscan_v2_complete\\pyscan_v2",
+  "security_grade": "B",
+  "total_functions": 74,
+  "vulnerable_functions": 7,
+  "execution_time_seconds": 3.1,
+  "findings": [
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 16,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "app",
+        "Optional"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "init_app",
+      "start_line": 20,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 39,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "init_app",
+        "self",
+        "app",
+        "Flask"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "generate_password_hash",
+      "start_line": 23,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "generate_password_hash",
+        "self",
+        "password",
+        "str"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "check_password_hash",
+      "start_line": 28,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 37,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "check_password_hash",
+        "self",
+        "pw_hash",
+        "Any"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 47,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "app",
+        "Optional"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "init_app",
+      "start_line": 51,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "init_app",
+        "self",
+        "app",
+        "Flask"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 65,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "label",
+        "str"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__call__",
+      "start_line": 72,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__call__",
+        "self",
+        "kwargs",
+        "Any"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 97,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 38,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "message",
+        "Optional"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 100,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 38,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "message",
+        "Optional"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 103,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 39,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "fieldname",
+        "str"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 107,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "min",
+        "int"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 112,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "regex",
+        "str"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__init__",
+      "start_line": 116,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "formdata",
+        "Optional"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "hidden_tag",
+      "start_line": 126,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 37,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "hidden_tag",
+        "self",
+        "Any",
+        "return"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "validate_on_submit",
+      "start_line": 128,
+      "is_vulnerable": true,
+      "risk_level": "MEDIUM",
+      "confidence_percent": 72,
+      "cwe_category": "CWE-200: Information Exposure",
+      "suspicious_tokens": [
+        "bool",
+        "request",
+        "method",
+        "def",
+        "self"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "validate",
+      "start_line": 132,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 36,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "validate",
+        "self",
+        "bool",
+        "valid"
+      ]
+    },
+    {
+      "filename": "compat.py",
+      "function_name": "__html__",
+      "start_line": 8,
+      "is_vulnerable": true,
+      "risk_level": "MEDIUM",
+      "confidence_percent": 70,
+      "cwe_category": "CWE-200: Information Exposure",
+      "suspicious_tokens": [
+        "str",
+        "self",
+        "def",
+        "__html__",
+        "return"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "index",
+      "start_line": 66,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var1",
+        "var2",
+        "var3"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "view_scan",
+      "start_line": 90,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var9",
+        "int",
+        "var1"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "profile",
+      "start_line": 107,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var1",
+        "var2",
+        "var3"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "change_password",
+      "start_line": 138,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var1",
+        "var2",
+        "var3"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "delete_scan",
+      "start_line": 168,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var7",
+        "int",
+        "var1"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "admin_panel",
+      "start_line": 181,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var1",
+        "var2",
+        "var3"
+      ]
+    },
+    {
+      "filename": "dashboard.py",
+      "function_name": "toggle_user",
+      "start_line": 195,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var7",
+        "int",
+        "var1"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_db",
+      "start_line": 7,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "sqlite3",
+        "Connection",
+        "var1"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "close_db",
+      "start_line": 13,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 41,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var3",
+        "var4",
+        "None"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "init_db",
+      "start_line": 18,
+      "is_vulnerable": true,
+      "risk_level": "HIGH",
+      "confidence_percent": 90,
+      "cwe_category": "CWE-78: OS Command Injection",
+      "suspicious_tokens": [
+        "var1",
+        "execute",
+        "None",
+        "def",
+        "var2"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "_seed_admin_account",
+      "start_line": 33,
+      "is_vulnerable": true,
+      "risk_level": "MEDIUM",
+      "confidence_percent": 67,
+      "cwe_category": "CWE-78: OS Command Injection",
+      "suspicious_tokens": [
+        "var1",
+        "None",
+        "Connection",
+        "import",
+        "bcrypt"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_by_email",
+      "start_line": 42,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var8",
+        "str",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_by_id",
+      "start_line": 47,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var8",
+        "int",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_by_username",
+      "start_line": 52,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var8",
+        "str",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "create_user",
+      "start_line": 57,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 44,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var5",
+        "str",
+        "var6"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "update_last_login",
+      "start_line": 66,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var4",
+        "int",
+        "None"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "update_username",
+      "start_line": 74,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var5",
+        "int",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "update_password",
+      "start_line": 82,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var5",
+        "int",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "toggle_user_active",
+      "start_line": 90,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 38,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var6",
+        "int",
+        "bool"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_all_users",
+      "start_line": 105,
+      "is_vulnerable": true,
+      "risk_level": "HIGH",
+      "confidence_percent": 84,
+      "cwe_category": "CWE-78: OS Command Injection",
+      "suspicious_tokens": [
+        "var1",
+        "fetchall",
+        "execute",
+        "def",
+        "var2"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "save_scan",
+      "start_line": 112,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var18",
+        "int",
+        "filename"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_scans",
+      "start_line": 169,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var9",
+        "int",
+        "var10"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_scan_by_id",
+      "start_line": 177,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 47,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var8",
+        "int",
+        "var9"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "soft_delete_scan",
+      "start_line": 185,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var5",
+        "int",
+        "var6"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "log_action",
+      "start_line": 194,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var5",
+        "var4",
+        "int"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_audit_log",
+      "start_line": 207,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var9",
+        "int",
+        "var10"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_recent_audit_log",
+      "start_line": 215,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var9",
+        "int",
+        "var4"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_system_stats",
+      "start_line": 223,
+      "is_vulnerable": true,
+      "risk_level": "HIGH",
+      "confidence_percent": 85,
+      "cwe_category": "CWE-78: OS Command Injection",
+      "suspicious_tokens": [
+        "var1",
+        "execute",
+        "fetchone",
+        "def",
+        "int"
+      ]
+    },
+    {
+      "filename": "database.py",
+      "function_name": "get_user_scan_stats",
+      "start_line": 240,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 47,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var9",
+        "int",
+        "var6"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "__init__",
+      "start_line": 60,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 35,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "None",
+        "_random"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "predict",
+      "start_line": 63,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "predict",
+        "self",
+        "function_dict",
+        "Dict"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "__init__",
+      "start_line": 125,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 38,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "None",
+        "model"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "_load_support_files",
+      "start_line": 133,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 41,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "_load_support_files",
+        "self",
+        "None",
+        "STRING_LIT"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "_load_model",
+      "start_line": 146,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "_load_model",
+        "self",
+        "None",
+        "STRING_LIT"
+      ]
+    },
+    {
+      "filename": "detector.py",
+      "function_name": "predict",
+      "start_line": 170,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "predict",
+        "self",
+        "function_dict",
+        "Dict"
+      ]
+    },
+    {
+      "filename": "pyscan_cli.py",
+      "function_name": "run_cli_scan",
+      "start_line": 11,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 41,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "var2",
+        "str",
+        "var12"
+      ]
+    },
+    {
+      "filename": "pyscan_cli.py",
+      "function_name": "main",
+      "start_line": 100,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 41,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "func1",
+        "None",
+        "var1",
+        "var5"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "setUpClass",
+      "start_line": 33,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "setUpClass",
+        "cls",
+        "app",
+        "create_app"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "setUp",
+      "start_line": 35,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "setUp",
+        "self",
+        "app_context",
+        "app"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "tearDown",
+      "start_line": 40,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 37,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "tearDown",
+        "self",
+        "app_context",
+        "pop"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_01_password_validation",
+      "start_line": 42,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_01_password_validation",
+        "self",
+        "STRING_LIT",
+        "valid"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_02_preprocessor_pipeline",
+      "start_line": 48,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 42,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_02_preprocessor_pipeline",
+        "self",
+        "STRING_LIT",
+        "prep"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_03_mock_detector",
+      "start_line": 63,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_03_mock_detector",
+        "self",
+        "STRING_LIT",
+        "detector"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_04_user_registration_and_login",
+      "start_line": 86,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_04_user_registration_and_login",
+        "self",
+        "STRING_LIT",
+        "int"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_05_file_scanning_workflow",
+      "start_line": 112,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_05_file_scanning_workflow",
+        "self",
+        "STRING_LIT",
+        "res_login"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_06_admin_panel",
+      "start_line": 136,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "test_06_admin_panel",
+        "self",
+        "STRING_LIT",
+        "res_login"
+      ]
+    },
+    {
+      "filename": "test_pyscan.py",
+      "function_name": "test_07_privacy_zero_storage_and_folder_scan",
+      "start_line": 147,
+      "is_vulnerable": true,
+      "risk_level": "MEDIUM",
+      "confidence_percent": 75,
+      "cwe_category": "CWE-78: OS Command Injection",
+      "suspicious_tokens": [
+        "execute",
+        "STRING_LIT",
+        "fetchone",
+        "content_type",
+        "self"
+      ]
+    },
+    {
+      "filename": "models\\bilstm_model.py",
+      "function_name": "__init__",
+      "start_line": 10,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 44,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "hidden_dim",
+        "int"
+      ]
+    },
+    {
+      "filename": "models\\bilstm_model.py",
+      "function_name": "forward",
+      "start_line": 13,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 43,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "forward",
+        "self",
+        "lstm_output",
+        "torch"
+      ]
+    },
+    {
+      "filename": "models\\bilstm_model.py",
+      "function_name": "__init__",
+      "start_line": 20,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "vocab_size",
+        "int"
+      ]
+    },
+    {
+      "filename": "models\\bilstm_model.py",
+      "function_name": "forward",
+      "start_line": 50,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 45,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "forward",
+        "self",
+        "torch",
+        "Tensor"
+      ]
+    },
+    {
+      "filename": "models\\vudenc_processor.py",
+      "function_name": "__init__",
+      "start_line": 24,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 44,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "__init__",
+        "self",
+        "vudenc_dir",
+        "str"
+      ]
+    },
+    {
+      "filename": "models\\vudenc_processor.py",
+      "function_name": "extract_vudenc_raw",
+      "start_line": 34,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 40,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "extract_vudenc_raw",
+        "self",
+        "DataFrame",
+        "STRING_LIT"
+      ]
+    },
+    {
+      "filename": "models\\vudenc_processor.py",
+      "function_name": "process_and_normalize",
+      "start_line": 94,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 46,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "process_and_normalize",
+        "self",
+        "DataFrame",
+        "STRING_LIT"
+      ]
+    },
+    {
+      "filename": "models\\vudenc_processor.py",
+      "function_name": "merge_with_cvefixes",
+      "start_line": 119,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 44,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "merge_with_cvefixes",
+        "self",
+        "vudenc_df",
+        "DataFrame"
+      ]
+    },
+    {
+      "filename": "models\\vudenc_processor.py",
+      "function_name": "process_all_and_export",
+      "start_line": 143,
+      "is_vulnerable": false,
+      "risk_level": "SAFE",
+      "confidence_percent": 44,
+      "cwe_category": "N/A",
+      "suspicious_tokens": [
+        "def",
+        "process_all_and_export",
+        "self",
+        "output_dir",
+        "str"
+      ]
+    }
+  ]
+}

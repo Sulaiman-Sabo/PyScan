@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PyScan -- AI-powered Python vulnerability detection using Deep Learning">
+    <title>Results -- Python Vulnerability Detection</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark pyscan-navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <span class="pyscan-logo-icon me-2">
+                    <i class="fas fa-shield-halved"></i>
+                </span>
+                <span class="pyscan-logo-text">PyScan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link "
+                           href="/">
+                            <i class="fas fa-house me-1"></i>Home
+                        </a>
+                    </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/scan">
+                                <i class="fas fa-bug me-1"></i>Scan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/dashboard/">
+                                <i class="fas fa-chart-line me-1"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/dashboard/profile">
+                                <i class="fas fa-user me-1"></i>Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/dashboard/settings">
+                                <i class="fas fa-sliders me-1"></i>Settings
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link "
+                               href="/dashboard/admin">
+                                <i class="fas fa-gear me-1"></i>Admin
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item ms-lg-2">
+                            <a class="nav-link user-greeting" href="/dashboard/profile">
+                                <span class="user-avatar">A</span>
+                                <span class="d-none d-lg-inline ms-1">admin</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link logout-link" href="/auth/logout">
+                                <i class="fas fa-right-from-bracket me-1"></i>Logout
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="container mt-3">
+        
+            
+        
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+        
+<!-- Summary Banner -->
+<section class="results-banner bg-success">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="banner-title text-break">
+                    
+                        <i class="fas fa-shield-halved me-2"></i>
+                        No Vulnerabilities Detected in test_upload.py
+                    
+                </h1>
+                <div class="banner-meta">
+                    <span class="banner-meta-item"><i class="fas fa-folder-open me-1"></i>test_upload.py</span>
+                    <span class="banner-meta-item"><i class="fas fa-file-code me-1"></i>1 file</span>
+                    <span class="banner-meta-item"><i class="fas fa-clock me-1"></i>2026-10-05 14:51:52</span>
+                    <span class="banner-meta-item"><i class="fas fa-cubes me-1"></i>1 function</span>
+                    <span class="banner-meta-item"><i class="fas fa-bug me-1"></i>0 vulnerable</span>
+                    <span class="banner-meta-item"><i class="fas fa-check-circle me-1"></i>1 safe</span>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="banner-score">
+                    <div class="score-label">Security Score</div>
+                    <div class="score-value">
+                        
+                        100%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Saved Notice -->
+<div class="container mt-3">
+    <div class="alert alert-info alert-sm d-flex align-items-center justify-content-between">
+        <div>
+            <i class="fas fa-shield-cat me-2 text-accent"></i>
+            <strong>Privacy Active:</strong> Zero source code stored. Scan metadata &amp; CWE analysis saved to your <a href="/dashboard/" class="alert-link">dashboard</a>.
+        </div>
+        <span class="badge bg-success"><i class="fas fa-lock me-1"></i>Code Safe</span>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<section class="results-actions">
+    <div class="container">
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="/download-report" class="btn btn-outline-report">
+                <i class="fas fa-download me-2"></i>Download Report
+            </a>
+            <a href="/scan" class="btn btn-scan-another">
+                <i class="fas fa-rotate-right me-2"></i>Scan Another Target
+            </a>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Vulnerability Categories Distribution Summary -->
+
+
+<!-- Vulnerable Functions -->
+
+
+
+<!-- Safe Functions -->
+
+
+<section class="results-safe">
+    <div class="container">
+        <div class="accordion" id="safeAccordion">
+            <div class="accordion-item safe-accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button safe-accordion-button " type="button"
+                            data-bs-toggle="collapse" data-bs-target="#safeCollapse" aria-expanded="true"
+                            aria-controls="safeCollapse">
+                        <i class="fas fa-check-circle me-2 text-success"></i>
+                        Safe Functions
+                        <span class="badge bg-success ms-2">1</span>
+                    </button>
+                </h2>
+                <div id="safeCollapse" class="accordion-collapse collapse show" data-bs-parent="#safeAccordion">
+                    <div class="accordion-body p-0">
+                        
+                        <div class="safe-function-row">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="safe-function-info text-break">
+                                    <span class="safe-function-name"><i class="fas fa-code-branch me-2"></i>test_func()</span>
+                                    
+                                        <span class="badge bg-secondary text-light ms-2 font-mono">test_upload.py</span>
+                                    
+                                    <span class="safe-line-badge">Line 1</span>
+                                </div>
+                                <div class="safe-confidence mt-1 mt-sm-0">
+                                    <span class="safe-confidence-label">Confidence</span>
+                                    <span class="safe-confidence-value">37%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CWE Reference Table -->
+<section class="results-cwe-reference">
+    <div class="container">
+        <div class="accordion" id="cweAccordion">
+            <div class="accordion-item cwe-accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button cwe-accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#cweCollapse" aria-expanded="false"
+                            aria-controls="cweCollapse">
+                        <i class="fas fa-book me-2 text-accent"></i>
+                        CWE Reference -- All 11 Detected Categories
+                    </button>
+                </h2>
+                <div id="cweCollapse" class="accordion-collapse collapse" data-bs-parent="#cweAccordion">
+                    <div class="accordion-body p-0">
+                        <div class="table-responsive">
+                            <table class="table cwe-table mb-0">
+                                <thead>
+                                    <tr><th>CWE ID</th><th>Name</th><th>Description</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="cwe-id-badge">CWE-78</span></td><td>OS Command Injection</td><td>Untrusted input passed to system shell commands</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-79</span></td><td>Cross-Site Scripting (XSS)</td><td>Untrusted data included in web pages without validation</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-89</span></td><td>SQL Injection</td><td>Untrusted input concatenated into SQL queries</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-94</span></td><td>Code Injection</td><td>Untrusted code evaluated or executed dynamically</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-200</span></td><td>Information Exposure</td><td>Sensitive information disclosed to unauthorized actors</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-287</span></td><td>Improper Authentication</td><td>Authentication mechanisms bypassed or missing</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-311</span></td><td>Missing Encryption</td><td>Sensitive data transmitted or stored without encryption</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-327</span></td><td>Insecure Cryptographic Implementation</td><td>Use of broken or weak cryptographic algorithms</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-502</span></td><td>Insecure Deserialization</td><td>Untrusted data deserialized without integrity checks</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-798</span></td><td>Hard-coded Credentials</td><td>Authentication secrets embedded in source code</td></tr>
+                                    <tr><td><span class="cwe-id-badge">CWE-918</span></td><td>Server-Side Request Forgery (SSRF)</td><td>Server coerced into making unauthorized requests</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pyscan-footer mt-auto py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                    <div class="footer-desc">
+                        <span class="footer-brand me-2">
+                            <i class="fas fa-shield-halved text-accent me-1"></i>
+                            <strong>PyScan</strong>
+                        </span>
+                        <span class="footer-tagline">AI-Powered Python Vulnerability Detection System</span>
+                        <div class="footer-academic mt-1">
+                            <span>BSc Cybersecurity Final Year Project</span>
+                            <span class="mx-2 opacity-50">•</span>
+                            <span>Federal University of Technology, Babura (FUTB)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <span class="footer-badge">
+                        <i class="fas fa-code me-1 text-accent"></i> Flask &amp; BiLSTM-Attention Model
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Session Timeout Modal -->
+    
+    <div class="modal fade" id="sessionTimeoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-clock text-warning me-2"></i>Session Expiring Soon
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your session will expire in 30 minutes due to inactivity.</p>
+                    <p class="mb-0">Click "Stay Logged In" to continue your session.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="stayLoggedIn">
+                        <i class="fas fa-check me-1"></i>Stay Logged In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/main.js"></script>
+
+    
+<script>
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text);
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstVuln = document.querySelector('.vuln-card');
+        if (firstVuln) {
+            firstVuln.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const firstBtn = firstVuln.querySelector('.btn-details');
+            if (firstBtn) firstBtn.click();
+        }
+    });
+</script>
+
+</body>
+</html>

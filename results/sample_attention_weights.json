@@ -1,0 +1,72 @@
+[
+  {
+    "function_name": "run_shell(cmd)",
+    "cwe_id": "CWE-78",
+    "cwe_category": "OS Command Injection",
+    "prediction": "VULNERABLE",
+    "confidence": 0.942,
+    "risk_level": "HIGH",
+    "tokens_with_weights": [
+      {
+        "token": "shell=True",
+        "weight": 0.342,
+        "role": "Vulnerability trigger (shell interpretation)"
+      },
+      {
+        "token": "os.system",
+        "weight": 0.281,
+        "role": "Dangerous sink invocation"
+      },
+      {
+        "token": "cmd",
+        "weight": 0.165,
+        "role": "Unsanitized user variable flow"
+      },
+      {
+        "token": "import os",
+        "weight": 0.084,
+        "role": "Module dependency context"
+      },
+      {
+        "token": "def run_shell",
+        "weight": 0.048,
+        "role": "Function signature scope"
+      }
+    ]
+  },
+  {
+    "function_name": "get_user_data(user_id)",
+    "cwe_id": "CWE-89",
+    "cwe_category": "SQL Injection",
+    "prediction": "VULNERABLE",
+    "confidence": 0.915,
+    "risk_level": "HIGH",
+    "tokens_with_weights": [
+      {
+        "token": "SELECT",
+        "weight": 0.315,
+        "role": "SQL query syntax indicator"
+      },
+      {
+        "token": "WHERE",
+        "weight": 0.264,
+        "role": "Query parameter clause"
+      },
+      {
+        "token": "cursor.execute",
+        "weight": 0.218,
+        "role": "Database sink invocation"
+      },
+      {
+        "token": "+ (concatenation)",
+        "weight": 0.112,
+        "role": "Dynamic string construction flaw"
+      },
+      {
+        "token": "user_id",
+        "weight": 0.051,
+        "role": "Unvalidated input parameter"
+      }
+    ]
+  }
+]
